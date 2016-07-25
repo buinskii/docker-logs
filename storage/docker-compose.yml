@@ -1,0 +1,23 @@
+version: '2'
+services:
+    elastic:
+        image: elasticsearch:2.3
+        volumes:
+            - ./elastic:/usr/share/elasticsearch/config
+    logstash:
+        image: logstash:2.3
+        command: "logstash -f /etc/logstash/logstash.conf"
+        volumes:
+            - "./logstash:/etc/logstash"
+        ports:
+            - "5140:5140"
+        depends_on: 
+            - elastic
+    kibana:
+        image: kibana:4.5
+        environment:
+            - ELASTICSEARCH_URL=http://elastic:9200
+        ports:
+            - "5601:5601"
+        depends_on: 
+            - elastic

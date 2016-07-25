@@ -1,0 +1,18 @@
+version: '2'
+services:
+    app1:
+        image: buinskii/docker-logs-app
+        logging:
+            driver: syslog
+            options:
+                syslog-tag: "app1"
+                syslog-address: "tcp://172.17.0.1:5140"
+        environment:
+            - BOO=yes
+    app2:
+        image: buinskii/docker-logs-app
+        logging:
+            driver: syslog
+            options:
+                syslog-tag: "app2"
+                syslog-address: "tcp://172.17.0.1:5140"
