@@ -5,7 +5,7 @@ services:
         logging:
             driver: syslog
             options:
-                syslog-tag: "app1"
+                syslog-tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
                 syslog-address: "tcp://172.17.0.1:5140"
         environment:
             - BOO=yes
@@ -14,5 +14,5 @@ services:
         logging:
             driver: syslog
             options:
-                syslog-tag: "app2"
+                syslog-tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
                 syslog-address: "tcp://172.17.0.1:5140"

@@ -29,8 +29,8 @@ class Logger {
         let args = Array.from(arguments);
         let level = args.shift();
         let tags = this._tags.concat(args.shift() || []);
-        tags = tags.map(v => '[' + v + ']').join(' ');
-        console.log(`NDL: ${level}: ${tags}: ${util.format.apply(util, args)}`);
+        tags = tags.join(',');
+        console.log(`NDL: ${level}: [${tags}]: ${util.format.apply(util, args)}`);
     }
 
     fatality() {
